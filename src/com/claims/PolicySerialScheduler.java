@@ -7,9 +7,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Manages policy locks and worker threads, ensuring per-policy serial processing.
- */
+
 public class PolicySerialScheduler {
     private final ClaimBacklog backlog;
     private final ClaimIdempotencyTracker idempotencyTracker;
