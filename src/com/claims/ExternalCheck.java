@@ -5,9 +5,7 @@ import com.claims.model.Claim;
 import java.util.Random;
 import java.util.concurrent.*;
 
-/**
- * Simulates external check with random outcomes and timeout.
- */
+
 public class ExternalCheck {
     public enum Result { SUCCESS, TRANSIENT_ERROR, PERMANENT_ERROR, TIMEOUT }
 
