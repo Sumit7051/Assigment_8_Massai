@@ -6,9 +6,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
-/**
- * Reads claims.csv and puts claims into backlog, respecting pause/resume.
- */
+
 public class ClaimIngestion implements Runnable {
     private final Path csvPath;
     private final ClaimBacklog backlog;
