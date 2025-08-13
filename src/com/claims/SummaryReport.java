@@ -9,9 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * Thread-safe summary statistics.
- */
+
 public class SummaryReport {
     private final Path summaryPath;
     private final Set<String> uniqueClaims = ConcurrentHashMap.newKeySet();
