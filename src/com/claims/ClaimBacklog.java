@@ -6,9 +6,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Thread-safe claim backlog supporting priority and per-policy FIFO.
- */
+
 public class ClaimBacklog {
     private final int capacity;
     private final AuditLogger auditLogger;
@@ -47,9 +45,7 @@ public class ClaimBacklog {
         }
     }
 
-    /**
-     * Ingest a claim into the backlog (blocking if full or paused).
-     */
+ 
     public void put(Claim claim) throws InterruptedException {
         while (true) {
             if (isPaused() || size() >= capacity) {
@@ -79,9 +75,7 @@ public class ClaimBacklog {
         return s;
     }
 
-    /**
-     * Get the next claim to process, respecting URGENT priority across policies.
-     */
+
     public Claim pollNext(Set<String> lockedPolicies) {
         // Prefer urgent first, but only if policy is not locked
         Claim claim = pollQueue(urgentQueue, lockedPolicies);
@@ -104,9 +98,7 @@ public class ClaimBacklog {
         return null;
     }
 
-    /**
-     * Re-queue claim for retry, preserving per-policy order.
-     */
+
     public void requeue(Claim claim) {
         // Always append to policy queue tail, and global queue according to priority
         policyQueues.computeIfAbsent(claim.policyNumber, k -> new PolicyQueue());
@@ -117,9 +109,7 @@ public class ClaimBacklog {
             normalQueue.offer(claim);
     }
 
-    /**
-     * Remove claim from all queues (after completion/failure).
-     */
+ 
     public void remove(Claim claim) {
         PolicyQueue pq = policyQueues.get(claim.policyNumber);
         if (pq != null) pq.remove(claim);
