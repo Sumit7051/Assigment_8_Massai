@@ -6,9 +6,6 @@ import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/**
- * Watches for suspicious claims and triggers throttling.
- */
 public class SuspiciousMonitor implements Runnable {
     private final int threshold;
     private final int windowSec;
